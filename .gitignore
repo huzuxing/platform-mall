@@ -1,0 +1,10 @@
+.idea
+*.iml
+target/
+platform-admin/*.iml
+platform-admin/target
+platform-api/*.iml
+platform-api/target
+platform-client/*.iml
+platform-client/target
+platform-common/*.iml
