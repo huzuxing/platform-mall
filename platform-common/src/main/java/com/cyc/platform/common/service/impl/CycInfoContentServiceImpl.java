@@ -1,6 +1,8 @@
 package com.cyc.platform.common.service.impl;
 
 
+import com.cyc.platform.common.dao.CycInfoContactsDao;
+import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
 import com.cyc.platform.common.service.CycInfoContentService;
 import com.cyc.platform.common.dao.CycInfoContentDao;
@@ -32,14 +34,17 @@ public class CycInfoContentServiceImpl implements CycInfoContentService {
 	@Override
 	public List<CycInfoContent> findPage(final CycInfoContent bean, Integer page, Integer rows) {
 
-		return null;
+		return cycInfoContentDao.findPage(bean, page, rows);
 	}
 	/**
  	 * 新增数据接口 
  	**/
 	@Override
 	@Transactional
-	public CycInfoContent add(final CycInfoContent bean) {
+	public CycInfoContent add(final CycInfoContent bean, CycInfoContacts contact) {
+		// 先保存联系人
+		cycInfoContactsDao.save(contact);
+		bean.setContactId(contact.getId());
 		cycInfoContentDao.save(bean);
 		return bean;
 	}
@@ -47,6 +52,7 @@ public class CycInfoContentServiceImpl implements CycInfoContentService {
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycInfoContent update(final CycInfoContent bean) {
 
 		return null;
@@ -93,5 +99,9 @@ public class CycInfoContentServiceImpl implements CycInfoContentService {
 	}
 	@Resource
 	private CycInfoContentDao cycInfoContentDao;
+
+	@Resource
+	private CycInfoContactsDao cycInfoContactsDao;
+
 
 }

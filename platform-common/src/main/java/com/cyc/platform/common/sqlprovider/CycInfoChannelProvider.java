@@ -1,25 +1,24 @@
 package com.cyc.platform.common.sqlprovider;
 
-import com.cyc.platform.common.entity.CycInfoClassify;
+import com.cyc.platform.common.entity.CycInfoChannel;
 import com.cyc.platform.common.utils.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.sql.SQLException;
-import java.util.Set;
 
 /**
  * Created by huzuxing on 2018/9/13.
  */
-public class CycInfoClassifyProvider {
+public class CycInfoChannelProvider {
 
-    public String update(CycInfoClassify bean) throws SQLException {
+    public String update(CycInfoChannel bean) throws SQLException {
         if (null == bean) {
-            throw new SQLException("none data to update { " + "CycInfoClassify" + " }");
+            throw new SQLException("none data to update { " + "CycInfoChannel" + " }");
         }
 
         return new SQL(){
             {
-                UPDATE("cyc_info_classify");
+                UPDATE("cyc_info_channel");
                 if (null != bean.getParentId()) {
                     SET("parent_id=#{parentId}");
                 }

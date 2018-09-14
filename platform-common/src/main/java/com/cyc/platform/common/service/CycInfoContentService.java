@@ -1,6 +1,7 @@
 package com.cyc.platform.common.service;
 
 
+import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface CycInfoContentService {
 
 	List<CycInfoContent> findPage(CycInfoContent bean, Integer page, Integer row);
 
-	CycInfoContent add(CycInfoContent bean);
+	CycInfoContent add(CycInfoContent bean, CycInfoContacts contact);
 
 	CycInfoContent update(CycInfoContent bean);
 

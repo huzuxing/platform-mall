@@ -1,21 +1,26 @@
 package com.cyc.platform.common.entity;
 
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Auto Created through python on 2018-09-13, author:111
  **/
 
 public class CycInfoContacts{
 
+	@Expose()
 	private Integer id;
 
 	/**	姓名**/
+	@Expose()
 	private String name;
 
 	/**	排序**/
 	private Integer sort;
 
 	/**	联系方式**/
+	@Expose()
 	private String contact;
 
 	/**	省份**/

@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycAnnouncement;
 import com.cyc.platform.common.service.CycAnnouncementService;
 import com.cyc.platform.common.dao.CycAnnouncementDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class CycAnnouncementServiceImpl implements CycAnnouncementService {
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncement add(final CycAnnouncement bean) {
 		cycAnnuoncementDao.save(bean);
 		return bean;
@@ -44,6 +47,7 @@ public class CycAnnouncementServiceImpl implements CycAnnouncementService {
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncement update(final CycAnnouncement bean) {
 
 		return null;
@@ -60,6 +64,7 @@ public class CycAnnouncementServiceImpl implements CycAnnouncementService {
  	 * 根据条件删除数据 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncement delete(final CycAnnouncement bean) {
 
 		return null;

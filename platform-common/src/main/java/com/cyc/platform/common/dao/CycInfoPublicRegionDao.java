@@ -5,6 +5,7 @@ import com.cyc.platform.common.entity.CycInfoPublicRegion;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,9 +13,10 @@ import java.util.List;
 /**
  * Auto Created through python on 2018-09-13, author:111 
  **/
-
+@Repository("cycInfoPublicRegionDao")
 public interface CycInfoPublicRegionDao {
 
+	@Select("select * from cyc_info_public_region")
 	List<CycInfoPublicRegion> findList(CycInfoPublicRegion bean);
 
 	List<CycInfoPublicRegion> findPage(CycInfoPublicRegion bean, Integer page, Integer row);

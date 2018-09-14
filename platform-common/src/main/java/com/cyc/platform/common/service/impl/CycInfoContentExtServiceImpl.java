@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycInfoContentExt;
 import com.cyc.platform.common.service.CycInfoContentExtService;
 import com.cyc.platform.common.dao.CycInfoContentExtDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycInfoContentExt add(final CycInfoContentExt bean) {
 		cycInfoContentExtDao.save(bean);
 		return bean;
@@ -44,6 +47,7 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycInfoContentExt update(final CycInfoContentExt bean) {
 
 		return null;

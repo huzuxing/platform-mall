@@ -2,8 +2,8 @@ package com.cyc.platform.common.controller;
 
 
 import com.cyc.platform.common.common.Constant;
-import com.cyc.platform.common.entity.CycInfoClassify;
-import com.cyc.platform.common.service.CycInfoClassifyService;
+import com.cyc.platform.common.entity.CycInfoChannel;
+import com.cyc.platform.common.service.CycInfoChannelService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +23,13 @@ import java.util.concurrent.Callable;
 
 @RestController
 @RequestMapping("/api/cycinfoclassify")
-public class CycInfoClassifyController {
+public class CycInfoChannelController {
 
 	/**
  	 * 根据条件获取list列表信息 
  	**/
 	@RequestMapping(value = "/findList", method = RequestMethod.POST)
-	public WebAsyncTask<String> findList(final CycInfoClassify bean, HttpServletRequest request) {
+	public WebAsyncTask<String> findList(final CycInfoChannel bean, HttpServletRequest request) {
 		Callable callable = () -> {
 
 			return null;
@@ -40,7 +40,7 @@ public class CycInfoClassifyController {
  	 * 根据条件获取分页数据 
  	**/
 	@RequestMapping(value = "/findPage", method = RequestMethod.POST)
-	public WebAsyncTask<String> findPage(final  CycInfoClassify bean,Integer page,Integer rows, HttpServletRequest request) {
+	public WebAsyncTask<String> findPage(final CycInfoChannel bean, Integer page, Integer rows, HttpServletRequest request) {
 		Callable callable = () -> {
 
 			return null;
@@ -51,7 +51,7 @@ public class CycInfoClassifyController {
  	 * 新增数据接口 
  	**/
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public WebAsyncTask<String> add(final CycInfoClassify bean) {
+	public WebAsyncTask<String> add(final CycInfoChannel bean) {
 		Callable callable = () -> {
 
 			return null;
@@ -62,7 +62,7 @@ public class CycInfoClassifyController {
  	 * 更新数据 
  	**/
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public WebAsyncTask<String> update(final CycInfoClassify bean) {
+	public WebAsyncTask<String> update(final CycInfoChannel bean) {
 		Callable callable = () -> {
 
 			return null;
@@ -73,7 +73,7 @@ public class CycInfoClassifyController {
  	 * 根据ID获取数据，需要参数校验 
  	**/
 	@RequestMapping(value = "/findById", method = RequestMethod.POST)
-	public WebAsyncTask<String> findById(final CycInfoClassify bean) {
+	public WebAsyncTask<String> findById(final CycInfoChannel bean) {
 		Callable callable = () -> {
 
 			return null;
@@ -84,7 +84,7 @@ public class CycInfoClassifyController {
  	 * 根据条件删除数据 
  	**/
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public WebAsyncTask<String> delete(final CycInfoClassify bean) {
+	public WebAsyncTask<String> delete(final CycInfoChannel bean) {
 		Callable callable = () -> {
 
 			return null;
@@ -92,6 +92,6 @@ public class CycInfoClassifyController {
 		return new WebAsyncTask<String>(Constant.REQUEST_TIMEOUT_MILLISECOND, callable);
 	}
 	@Resource
-	private CycInfoClassifyService cycInfoClassifyService;
+	private CycInfoChannelService cycInfoClassifyService;
 
 }

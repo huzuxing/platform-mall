@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycInfoStick;
 import com.cyc.platform.common.service.CycInfoStickService;
 import com.cyc.platform.common.dao.CycInfoStickDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class CycInfoStickServiceImpl implements CycInfoStickService {
 	@Override
 	public List<CycInfoStick> findList(final CycInfoStick bean) {
 
-		return null;
+		return cycInfoStickDao.findList(bean);
 	}
 	/**
  	 * 根据条件获取分页数据 
@@ -36,14 +38,16 @@ public class CycInfoStickServiceImpl implements CycInfoStickService {
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycInfoStick add(final CycInfoStick bean) {
-
-		return null;
+		cycInfoStickDao.save(bean);
+		return bean;
 	}
 	/**
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycInfoStick update(final CycInfoStick bean) {
 
 		return null;

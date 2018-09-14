@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycComment;
 import com.cyc.platform.common.service.CycCommentService;
 import com.cyc.platform.common.dao.CycCommentDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class CycCommentServiceImpl implements CycCommentService {
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycComment add(final CycComment bean) {
 
 		return null;
@@ -44,6 +47,7 @@ public class CycCommentServiceImpl implements CycCommentService {
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycComment update(final CycComment bean) {
 
 		return null;

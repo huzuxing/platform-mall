@@ -1,7 +1,7 @@
 
 import com.cyc.platform.admin.Application;
-import com.cyc.platform.common.dao.CycInfoClassifyDao;
-import com.cyc.platform.common.entity.CycInfoClassify;
+import com.cyc.platform.common.dao.CycInfoChannelDao;
+import com.cyc.platform.common.entity.CycInfoChannel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,35 +18,35 @@ import java.time.Instant;
 public class CycInfoClassifyTest {
 
     @Resource
-    private CycInfoClassifyDao cycInfoClassifyDao;
+    private CycInfoChannelDao cycInfoChannelDao;
 
     @Test
     public void add() {
-        CycInfoClassify bean = new CycInfoClassify();
+        CycInfoChannel bean = new CycInfoChannel();
         bean.setName("酒水");
         bean.setSort(1);
         bean.setParentId(7);
         Long now = Instant.now().getEpochSecond();
         bean.setTimeCreate(now.intValue());
-        int result = cycInfoClassifyDao.save(bean);
+        int result = cycInfoChannelDao.save(bean);
         System.out.println(bean.getId());
     }
 
     @Test
     public void findById() {
-        CycInfoClassify bean = new CycInfoClassify();
+        CycInfoChannel bean = new CycInfoChannel();
         bean.setId(4);
-        CycInfoClassify entity = cycInfoClassifyDao.findById(bean);
+        CycInfoChannel entity = cycInfoChannelDao.findById(bean);
         System.out.println(entity.getName());
     }
     @Test
     public void update() {
-        CycInfoClassify bean = new CycInfoClassify();
+        CycInfoChannel bean = new CycInfoChannel();
         bean.setId(5);
         bean.setName("update66");
         bean.setParentId(6);
         Long now = Instant.now().getEpochSecond();
         bean.setTimeUpdate(now.intValue());
-        cycInfoClassifyDao.update(bean);
+        cycInfoChannelDao.update(bean);
     }
 }

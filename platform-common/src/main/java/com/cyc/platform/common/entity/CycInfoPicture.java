@@ -1,21 +1,26 @@
 package com.cyc.platform.common.entity;
 
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Auto Created through python on 2018-09-13, author:111
  **/
 
 public class CycInfoPicture{
 
+	@Expose()
 	private Integer id;
 
 	/**	信息ID**/
+	@Expose()
 	private Integer infoId;
 
 	/**	排序**/
 	private Integer sort;
 
 	/**	图片地址**/
+	@Expose()
 	private String url;
 
 	public CycInfoPicture() {}

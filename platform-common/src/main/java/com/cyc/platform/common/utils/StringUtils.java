@@ -1,5 +1,7 @@
 package com.cyc.platform.common.utils;
 
+import java.util.UUID;
+
 /**
  * Created by huzuxing on 2017/7/12.
  */
@@ -38,5 +40,14 @@ public class StringUtils {
         }
         String fileName = filePath.substring(0, filePath.lastIndexOf("\\."));
         return fileName;
+    }
+
+    /**
+     * 获取一个32位唯一的uuid
+     */
+    public static String getUuidWithoutCrossLine() {
+        String retStr = UUID.randomUUID().toString();
+        retStr = retStr.replace("-", "").toUpperCase();
+        return retStr;
     }
 }

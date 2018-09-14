@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by huzuxing on 2018/9/13.
  */
-public class CycInfoContentProvider {
+public class CycInfoContentProvider extends BaseProvider{
 
     public String save(CycInfoContent bean) throws SQLException {
         if (null == bean) {
@@ -19,27 +19,44 @@ public class CycInfoContentProvider {
             {
                 INSERT_INTO("cyc_info_content");
                 if (!StringUtils.isNullOrEmpty(bean.getTitle())) {
-                    VALUES("title", bean.getTitle());
+                    VALUES("title", "#{title}");
                 }
                 if (!StringUtils.isNullOrEmpty(bean.getShortTitle())) {
-                    VALUES("short_title", bean.getShortTitle());
+                    VALUES("short_title", "#{shortTitle}");
                 }
                 if (!StringUtils.isNullOrEmpty(bean.getDescription())) {
-                    VALUES("description", bean.getDescription());
+                    VALUES("description", "#{description}");
                 }
                 if (!StringUtils.isNullOrEmpty(bean.getContent())) {
-                    VALUES("content", "'" + bean.getContent() + "'");
+                    VALUES("content", "#{content}");
                 }
                 if (null != bean.getIsSticked()) {
-                    VALUES("is_sticked", String.valueOf(bean.getIsSticked()));
+                    VALUES("is_sticked", "#{isSticked}");
                 }
                 if (null != bean.getTimeCreate()) {
-                    VALUES("time_create", String.valueOf(bean.getTimeCreate()));
+                    VALUES("time_create", "#{timeCreate}");
                 }
                 if (null != bean.getTimePublish()) {
-                    VALUES("time_publish", String.valueOf(bean.getTimePublish()));
+                    VALUES("time_publish", "#{timePublish}");
+                }
+                if (null != bean.getContactId()) {
+                    VALUES("contact_id", "#{contactId}");
+                }
+                if (null != bean.getChannelId()) {
+                    VALUES("channel_id", "#{channelId}");
                 }
             }
         }.toString();
+    }
+
+    public String findPage(CycInfoContent bean, Integer page, Integer rows) {
+
+        page = page(page);
+        rows = rows(rows);
+
+        StringBuilder builder = new StringBuilder("select * from cyc_info_content o where 1=1");
+
+        builder.append(" limit ").append((page - 1) * rows).append(",").append(rows);
+        return builder.toString();
     }
 }

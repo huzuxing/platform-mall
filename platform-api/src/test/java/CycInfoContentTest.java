@@ -1,5 +1,6 @@
 import com.cyc.platform.api.Application;
 import com.cyc.platform.common.dao.CycInfoContentDao;
+import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
 import com.cyc.platform.common.service.CycInfoContentService;
 import org.junit.Test;
@@ -28,7 +29,16 @@ public class CycInfoContentTest {
         Long now = Instant.now().getEpochSecond();
         bean.setTimeCreate(now.intValue());
         bean.setTimePublish(now.intValue());
-        CycInfoContent result = cycInfoContentService.add(null);
+        bean.setChannelId(1);
+        CycInfoContacts contacts = new CycInfoContacts();
+        contacts.setName("张三");
+        contacts.setContact("13808551062");
+        contacts.setProvince("四川省");
+        contacts.setCity("成都市");
+        contacts.setDistrict("高新区");
+        contacts.setAddress("双宿双飞路");
+        contacts.setTimeCreate(now.intValue());
+        CycInfoContent result = cycInfoContentService.add(bean, contacts);
         System.out.println(result.getId());
     }
 

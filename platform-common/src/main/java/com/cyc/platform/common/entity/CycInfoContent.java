@@ -1,30 +1,53 @@
 package com.cyc.platform.common.entity;
 
 
+import com.google.gson.annotations.Expose;
+
+import java.util.List;
+
 /**
  * Auto Created through python on 2018-09-13, author:111
  **/
 
 public class CycInfoContent{
 
+	@Expose
 	private Integer id;
 
 	/**	标题**/
+	@Expose
 	private String title;
 
 	/**	简短标题**/
+	@Expose
 	private String shortTitle;
 
 	/**	描述**/
+	@Expose
 	private String description;
 
 	/**	内容**/
+	@Expose
 	private String content;
 
 	/**	排序**/
 	private Integer sort;
 
+	/**	联系人ID**/
+	@Expose
+	private Integer contactId;
+
+
+	/**	栏目ID**/
+	@Expose
+	private Integer channelId;
+
+	/**	发布者ID**/
+	@Expose
+	private Integer userId;
+
 	/**	是否置顶，0-否，1-是**/
+	@Expose
 	private Integer isSticked;
 
 	/**	状态**/
@@ -32,15 +55,25 @@ public class CycInfoContent{
 
 	private Integer timeCreate;
 
+	@Expose
 	private Integer timePublish;
 
 	private Integer timeUpdate;
+
+	@Expose()
+	private List<CycInfoPicture> pictures;
+
+	@Expose()
+	private CycInfoContacts contact;
 
 	public CycInfoContent() {}
 
 	public CycInfoContent(Integer id,String title,String shortTitle,
 						  String description,String content,Integer sort,Integer isSticked,
-						  Integer status,Integer timeCreate,Integer timePublish,Integer timeUpdate) {
+						  Integer status,Integer timeCreate,
+						  Integer timePublish,Integer timeUpdate, Integer contactId,
+						  Integer channelId, List<CycInfoPicture> pictures, Integer userId,
+						  CycInfoContacts contact) {
 		this.id = id;
 		this.title = title;
 		this.shortTitle = shortTitle;
@@ -52,6 +85,11 @@ public class CycInfoContent{
 		this.timeCreate = timeCreate;
 		this.timePublish = timePublish;
 		this.timeUpdate = timeUpdate;
+		this.contactId = contactId;
+		this.channelId = channelId;
+		this.pictures = pictures;
+		this.userId = userId;
+		this.contact = contact;
 	}
 	public void setId(Integer id) {
 		 this.id = id;
@@ -118,5 +156,45 @@ public class CycInfoContent{
 	}
 	public Integer getTimeUpdate() {
 		 return this.timeUpdate;
+	}
+
+	public Integer getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(Integer contactId) {
+		this.contactId = contactId;
+	}
+
+	public Integer getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
+	}
+
+	public List<CycInfoPicture> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<CycInfoPicture> pictures) {
+		this.pictures = pictures;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public CycInfoContacts getContact() {
+		return contact;
+	}
+
+	public void setContact(CycInfoContacts contact) {
+		this.contact = contact;
 	}
 }

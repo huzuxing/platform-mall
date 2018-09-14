@@ -1,18 +1,23 @@
 package com.cyc.platform.common.entity;
 
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Auto Created through python on 2018-09-13, author:111
  **/
 
-public class CycInfoClassify{
+public class CycInfoChannel {
 
+	@Expose()
 	private Integer id;
 
 	/**	父级ID**/
+	@Expose()
 	private Integer parentId;
 
 	/**	分类名称**/
+	@Expose()
 	private String name;
 
 	/**	排序**/
@@ -22,9 +27,9 @@ public class CycInfoClassify{
 
 	private Integer timeUpdate;
 
-	public CycInfoClassify() {}
+	public CycInfoChannel() {}
 
-	public CycInfoClassify(Integer id,Integer parentId,String name,Integer sort,Integer timeCreate,Integer timeUpdate) {
+	public CycInfoChannel(Integer id, Integer parentId, String name, Integer sort, Integer timeCreate, Integer timeUpdate) {
 		this.id = id;
 		this.parentId = parentId;
 		this.name = name;

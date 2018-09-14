@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycCommentParentchildren;
 import com.cyc.platform.common.service.CycCommentParentchildrenService;
 import com.cyc.platform.common.dao.CycCommentParentchildrenDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class CycCommentParentchildrenServiceImpl implements CycCommentParentchil
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycCommentParentchildren add(final CycCommentParentchildren bean) {
 
 		return null;
@@ -44,6 +47,7 @@ public class CycCommentParentchildrenServiceImpl implements CycCommentParentchil
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycCommentParentchildren update(final CycCommentParentchildren bean) {
 
 		return null;
@@ -60,6 +64,7 @@ public class CycCommentParentchildrenServiceImpl implements CycCommentParentchil
  	 * 根据条件删除数据 
  	**/
 	@Override
+	@Transactional
 	public CycCommentParentchildren delete(final CycCommentParentchildren bean) {
 
 		return null;

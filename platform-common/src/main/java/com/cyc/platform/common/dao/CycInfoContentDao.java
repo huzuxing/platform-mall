@@ -1,14 +1,13 @@
 package com.cyc.platform.common.dao;
 
 
+import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
 import com.cyc.platform.common.sqlprovider.CycInfoContentProvider;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 
@@ -20,6 +19,14 @@ public interface CycInfoContentDao {
 
 	List<CycInfoContent> findList(CycInfoContent bean);
 
+	//@SelectProvider(type = CycInfoContentProvider.class, method = "findPage")
+	@Select("select * from cyc_info_content")
+	@Results({
+		@Result(property = "pictures", column = "id",javaType = List.class,
+		many = @Many(select = "com.cyc.platform.common.dao.CycInfoPictureDao.findList")),
+		@Result(property = "contact", column = "contactId",javaType = CycInfoContacts.class,
+		many = @Many(select = "com.cyc.platform.common.dao.cycInfoContactsDao.findById"))
+	})
 	List<CycInfoContent> findPage(CycInfoContent bean, Integer page, Integer row);
 
 	@InsertProvider(type = CycInfoContentProvider.class,method = "save")

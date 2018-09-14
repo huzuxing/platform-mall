@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycAnnouncementPosition;
 import com.cyc.platform.common.service.CycAnnouncementPositionService;
 import com.cyc.platform.common.dao.CycAnnouncementPositionDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncementPosition add(final CycAnnouncementPosition bean) {
 		cycAnnuoncementPositionDao.save(bean);
 		return bean;
@@ -44,6 +47,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncementPosition update(final CycAnnouncementPosition bean) {
 
 		return null;
@@ -60,6 +64,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 根据条件删除数据 
  	**/
 	@Override
+	@Transactional
 	public CycAnnouncementPosition delete(final CycAnnouncementPosition bean) {
 
 		return null;
@@ -68,6 +73,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 批量保存 
  	**/
 	@Override
+	@Transactional
 	public boolean batchSave(List<CycAnnouncementPosition> bean) {
 
 		return false;
@@ -76,6 +82,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 批量更新 
  	**/
 	@Override
+	@Transactional
 	public boolean batchUpdate(List<CycAnnouncementPosition> bean) {
 
 		return false;
@@ -84,6 +91,7 @@ public class CycAnnouncementPositionServiceImpl implements CycAnnouncementPositi
  	 * 批量删除 
  	**/
 	@Override
+	@Transactional
 	public boolean batchDelete(List<CycAnnouncementPosition> bean) {
 
 		return false;

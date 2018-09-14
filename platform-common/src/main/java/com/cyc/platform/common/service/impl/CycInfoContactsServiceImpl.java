@@ -5,6 +5,8 @@ import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.service.CycInfoContactsService;
 import com.cyc.platform.common.dao.CycInfoContactsDao;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,14 +38,16 @@ public class CycInfoContactsServiceImpl implements CycInfoContactsService {
  	 * 新增数据接口 
  	**/
 	@Override
+	@Transactional
 	public CycInfoContacts add(final CycInfoContacts bean) {
-
-		return null;
+		cycInfoContactsDao.save(bean);
+		return bean;
 	}
 	/**
  	 * 更新数据 
  	**/
 	@Override
+	@Transactional
 	public CycInfoContacts update(final CycInfoContacts bean) {
 
 		return null;
@@ -54,7 +58,7 @@ public class CycInfoContactsServiceImpl implements CycInfoContactsService {
 	@Override
 	public CycInfoContacts findById(final CycInfoContacts bean) {
 
-		return null;
+		return cycInfoContactsDao.findById(bean);
 	}
 	/**
  	 * 根据条件删除数据 

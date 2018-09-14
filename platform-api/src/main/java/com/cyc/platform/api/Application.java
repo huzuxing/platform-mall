@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * Created by huzuxing on 2018/9/12.
  */
-@SpringBootApplication(scanBasePackages = {"com.cyc.platform.common.service"})
+@SpringBootApplication(scanBasePackages = {"com.cyc.platform.common.service", "com.cyc.platform.api"})
 @EnableTransactionManagement
 @MapperScan("com.cyc.platform.common.dao")
 public class Application {
