@@ -15,7 +15,7 @@ import java.time.Instant;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class CycInfoClassifyTest {
+public class CycInfoChannelTest {
 
     @Resource
     private CycInfoChannelDao cycInfoChannelDao;
@@ -23,11 +23,12 @@ public class CycInfoClassifyTest {
     @Test
     public void add() {
         CycInfoChannel bean = new CycInfoChannel();
-        bean.setName("酒水");
+        bean.setName("材料");
         bean.setSort(1);
         bean.setParentId(7);
         Long now = Instant.now().getEpochSecond();
         bean.setTimeCreate(now.intValue());
+        bean.setIcon("fexxdfef.png");
         int result = cycInfoChannelDao.save(bean);
         System.out.println(bean.getId());
     }

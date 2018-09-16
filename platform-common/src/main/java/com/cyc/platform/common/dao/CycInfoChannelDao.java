@@ -23,7 +23,7 @@ public interface CycInfoChannelDao {
 
 	List<CycInfoChannel> findPage(CycInfoChannel bean, Integer page, Integer row);
 
-	@Insert("insert into cyc_info_channel(name, parent_id,sort, time_create) values(#{name}, #{parentId}, #{sort}, #{timeCreate})")
+	@Insert("insert into cyc_info_channel(name,icon, parent_id,sort, time_create) values(#{name},#{icon}, #{parentId}, #{sort}, #{timeCreate})")
 	@Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
 	int save(CycInfoChannel bean);
 

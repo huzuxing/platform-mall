@@ -20,6 +20,10 @@ public class CycInfoChannel {
 	@Expose()
 	private String name;
 
+	/**	分类名称**/
+	@Expose()
+	private String icon;
+
 	/**	排序**/
 	private Integer sort;
 
@@ -29,13 +33,14 @@ public class CycInfoChannel {
 
 	public CycInfoChannel() {}
 
-	public CycInfoChannel(Integer id, Integer parentId, String name, Integer sort, Integer timeCreate, Integer timeUpdate) {
+	public CycInfoChannel(Integer id, Integer parentId, String name, Integer sort, Integer timeCreate, Integer timeUpdate, String icon) {
 		this.id = id;
 		this.parentId = parentId;
 		this.name = name;
 		this.sort = sort;
 		this.timeCreate = timeCreate;
 		this.timeUpdate = timeUpdate;
+		this.icon = icon;
 	}
 	public void setId(Integer id) {
 		 this.id = id;
@@ -74,5 +79,13 @@ public class CycInfoChannel {
 
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 }

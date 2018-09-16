@@ -8,3 +8,7 @@ platform-api/target
 platform-client/*.iml
 platform-client/target
 platform-common/*.iml
+logs/
+platform-admin/logs
+platform-api/logs
+platform-common/logs

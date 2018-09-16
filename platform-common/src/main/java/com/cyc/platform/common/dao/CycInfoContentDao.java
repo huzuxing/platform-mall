@@ -5,6 +5,7 @@ import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
 import com.cyc.platform.common.sqlprovider.CycInfoContentProvider;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.ManyToOne;
@@ -19,13 +20,12 @@ public interface CycInfoContentDao {
 
 	List<CycInfoContent> findList(CycInfoContent bean);
 
-	//@SelectProvider(type = CycInfoContentProvider.class, method = "findPage")
-	@Select("select * from cyc_info_content")
+	@SelectProvider(type = CycInfoContentProvider.class, method = "findPage")
 	@Results({
 		@Result(property = "pictures", column = "id",javaType = List.class,
 		many = @Many(select = "com.cyc.platform.common.dao.CycInfoPictureDao.findList")),
-		@Result(property = "contact", column = "contactId",javaType = CycInfoContacts.class,
-		many = @Many(select = "com.cyc.platform.common.dao.cycInfoContactsDao.findById"))
+			@Result(property = "contact", column = "contact_id",javaType = CycInfoContacts.class,
+					one = @One(select = "com.cyc.platform.common.dao.CycInfoContactsDao.findById",fetchType = FetchType.EAGER))
 	})
 	List<CycInfoContent> findPage(CycInfoContent bean, Integer page, Integer row);
 
@@ -36,6 +36,12 @@ public interface CycInfoContentDao {
 	int update(CycInfoContent bean);
 
 	@Select("select * from cyc_info_content where id=#{id}")
+	@Results({
+			@Result(property = "pictures", column = "id",javaType = List.class,
+					many = @Many(select = "com.cyc.platform.common.dao.CycInfoPictureDao.findList")),
+			@Result(property = "contact", column = "contact_id",
+					one = @One(select = "com.cyc.platform.common.dao.CycInfoContactsDao.findById",fetchType = FetchType.EAGER))
+	})
 	CycInfoContent findById(CycInfoContent bean);
 
 	CycInfoContent delete(CycInfoContent bean);

@@ -10,10 +10,51 @@ Target Server Type    : MYSQL
 Target Server Version : 50631
 File Encoding         : 65001
 
-Date: 2018-09-12 22:35:18
+Date: 2018-09-16 22:11:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `cyc_announcement`
+-- ----------------------------
+DROP TABLE IF EXISTS `cyc_announcement`;
+CREATE TABLE `cyc_announcement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `position_id` int(11) NOT NULL COMMENT '公告位置ID',
+  `title` varchar(125) NOT NULL COMMENT '公告标题',
+  `content` longtext COMMENT '内容',
+  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `status` tinyint(4) DEFAULT '0' COMMENT '状态',
+  `time_create` int(10) NOT NULL COMMENT '创建时间',
+  `time_update` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='公告内容';
+
+-- ----------------------------
+-- Records of cyc_announcement
+-- ----------------------------
+INSERT INTO `cyc_announcement` VALUES ('1', '1', '欢迎新同学加入', '欢迎新同学加入，请注意一下事项', '1', '0', '1536831483', '0');
+
+-- ----------------------------
+-- Table structure for `cyc_announcement_position`
+-- ----------------------------
+DROP TABLE IF EXISTS `cyc_announcement_position`;
+CREATE TABLE `cyc_announcement_position` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(125) NOT NULL COMMENT '公告位置名称',
+  `sort` int(11) DEFAULT '0' COMMENT '排序',
+  `status` tinyint(4) DEFAULT '0' COMMENT '状态',
+  `time_create` int(10) NOT NULL COMMENT '创建时间',
+  `time_update` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='公告位置';
+
+-- ----------------------------
+-- Records of cyc_announcement_position
+-- ----------------------------
+INSERT INTO `cyc_announcement_position` VALUES ('1', '首页公告', '0', '0', '1536828344', '0');
+INSERT INTO `cyc_announcement_position` VALUES ('2', '首页公告', '0', '0', '1536828397', '0');
 
 -- ----------------------------
 -- Table structure for `cyc_annuoncement`
@@ -95,6 +136,32 @@ CREATE TABLE `cyc_comment_parentchildren` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `cyc_info_channel`
+-- ----------------------------
+DROP TABLE IF EXISTS `cyc_info_channel`;
+CREATE TABLE `cyc_info_channel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT '0' COMMENT '父级ID',
+  `name` varchar(10) NOT NULL COMMENT '分类名称',
+  `icon` varchar(125) DEFAULT NULL COMMENT '栏目icon',
+  `sort` int(11) DEFAULT '1' COMMENT '排序',
+  `time_create` int(10) NOT NULL,
+  `time_update` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='信息分类';
+
+-- ----------------------------
+-- Records of cyc_info_channel
+-- ----------------------------
+INSERT INTO `cyc_info_channel` VALUES ('5', '6', 'update66', null, '1', '1536809050', '1536811858');
+INSERT INTO `cyc_info_channel` VALUES ('6', '0', '商家招聘', null, '1', '1536809096', '0');
+INSERT INTO `cyc_info_channel` VALUES ('7', '0', '餐饮食材', null, '1', '1536809118', '0');
+INSERT INTO `cyc_info_channel` VALUES ('8', '7', '酒水', null, '1', '1536809196', '0');
+INSERT INTO `cyc_info_channel` VALUES ('9', '7', '小吃', null, '1', '1537066533', '0');
+INSERT INTO `cyc_info_channel` VALUES ('11', '7', '材料', 'fexxdfef.png', '1', '1537066648', '0');
+
+-- ----------------------------
 -- Table structure for `cyc_info_classify`
 -- ----------------------------
 DROP TABLE IF EXISTS `cyc_info_classify`;
@@ -128,11 +195,15 @@ CREATE TABLE `cyc_info_contacts` (
   `time_create` int(10) NOT NULL,
   `time_update` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息联系人';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息联系人';
 
 -- ----------------------------
 -- Records of cyc_info_contacts
 -- ----------------------------
+INSERT INTO `cyc_info_contacts` VALUES ('3', '张三', '1', '13808551062', '四川省', '成都市', '高新区', '双宿双飞路', '1536910040', '0');
+INSERT INTO `cyc_info_contacts` VALUES ('4', '张三', '1', '13808551062', '四川省', '成都市', '高新区', '双宿双飞路', '1536910083', '0');
+INSERT INTO `cyc_info_contacts` VALUES ('5', '张三', '1', '13808551062', '四川省', '成都市', '高新区', '双宿双飞路', '1536910142', '0');
+INSERT INTO `cyc_info_contacts` VALUES ('6', '张三', '1', '13808551062', '四川省', '成都市', '高新区', '双宿双飞路', '1536916556', '0');
 
 -- ----------------------------
 -- Table structure for `cyc_info_content`
@@ -146,18 +217,21 @@ CREATE TABLE `cyc_info_content` (
   `content` longtext COMMENT '内容',
   `sort` int(11) DEFAULT '1' COMMENT '排序',
   `is_sticked` tinyint(4) DEFAULT '0' COMMENT '是否置顶，0-否，1-是',
+  `channel_id` int(11) NOT NULL COMMENT '栏目ID',
+  `contact_id` int(11) DEFAULT NULL COMMENT '联系人ID',
+  `user_id` int(11) NOT NULL COMMENT '发布者ID',
   `status` tinyint(4) DEFAULT '0' COMMENT '状态',
-  `district` varchar(50) NOT NULL COMMENT '区',
-  `address` varchar(255) NOT NULL COMMENT '详细地址',
   `time_create` int(10) NOT NULL,
   `time_publish` int(10) NOT NULL,
   `time_update` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息内容';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='信息内容';
 
 -- ----------------------------
 -- Records of cyc_info_content
 -- ----------------------------
+INSERT INTO `cyc_info_content` VALUES ('5', null, null, null, '测试内容', '1', '1', '2', '5', '0', '0', '1536910142', '1536910142', '0');
+INSERT INTO `cyc_info_content` VALUES ('6', null, null, null, '测试内容', '1', '1', '1', '6', '0', '0', '1536916556', '1536916556', '0');
 
 -- ----------------------------
 -- Table structure for `cyc_info_content_ext`
@@ -187,11 +261,13 @@ CREATE TABLE `cyc_info_picture` (
   `sort` int(11) DEFAULT '1' COMMENT '排序',
   `url` longtext COMMENT '图片地址',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息图片';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息图片';
 
 -- ----------------------------
 -- Records of cyc_info_picture
 -- ----------------------------
+INSERT INTO `cyc_info_picture` VALUES ('1', '5', '1', 'feeadefe.jpg');
+INSERT INTO `cyc_info_picture` VALUES ('2', '5', '1', 'fadffdadfd.jpg');
 
 -- ----------------------------
 -- Table structure for `cyc_info_public_region`
@@ -206,11 +282,13 @@ CREATE TABLE `cyc_info_public_region` (
   `time_update` int(10) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息发布区域';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='信息发布区域';
 
 -- ----------------------------
 -- Records of cyc_info_public_region
 -- ----------------------------
+INSERT INTO `cyc_info_public_region` VALUES ('1', '本地', '1', '0', '1536812558', '0');
+INSERT INTO `cyc_info_public_region` VALUES ('2', '全国', '2', '10', '1536812605', '0');
 
 -- ----------------------------
 -- Table structure for `cyc_info_stick`
@@ -225,11 +303,12 @@ CREATE TABLE `cyc_info_stick` (
   `time_create` int(10) NOT NULL,
   `time_update` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息置顶信息';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息置顶信息';
 
 -- ----------------------------
 -- Records of cyc_info_stick
 -- ----------------------------
+INSERT INTO `cyc_info_stick` VALUES ('1', '置顶7一周', '1', '10', '0', '1536817116', '0');
 
 -- ----------------------------
 -- Table structure for `cyc_user`

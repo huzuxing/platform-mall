@@ -45,7 +45,15 @@ public class CycInfoContentTest {
     @Test
     public void findById() {
         CycInfoContent bean = new CycInfoContent();
-        bean.setId(2);
+        bean.setId(5);
+        CycInfoContent result = cycInfoContentService.findById(bean);
+        System.out.println(result.getContent());
+    }
+
+    @Test
+    public void findPage() {
+        CycInfoContent bean = new CycInfoContent();
+        bean.setId(5);
         CycInfoContent result = cycInfoContentService.findById(bean);
         System.out.println(result.getContent());
     }
