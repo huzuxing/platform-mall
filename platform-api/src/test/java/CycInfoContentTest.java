@@ -1,8 +1,11 @@
 import com.cyc.platform.api.Application;
 import com.cyc.platform.common.dao.CycInfoContentDao;
+import com.cyc.platform.common.dao.CycInfoPictureDao;
 import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
+import com.cyc.platform.common.entity.CycInfoPicture;
 import com.cyc.platform.common.service.CycInfoContentService;
+import com.cyc.platform.common.service.CycInfoPictureService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +24,9 @@ public class CycInfoContentTest {
     @Resource
     private CycInfoContentService cycInfoContentService;
 
+    @Resource
+    private CycInfoPictureDao cycInfoPictureDao;
+
     @Test
     public void add() {
         CycInfoContent bean = new CycInfoContent();
@@ -38,7 +44,7 @@ public class CycInfoContentTest {
         contacts.setDistrict("高新区");
         contacts.setAddress("双宿双飞路");
         contacts.setTimeCreate(now.intValue());
-        CycInfoContent result = cycInfoContentService.add(bean, contacts);
+        CycInfoContent result = cycInfoContentService.add(bean, contacts, null);
         System.out.println(result.getId());
     }
 
@@ -56,5 +62,13 @@ public class CycInfoContentTest {
         bean.setId(5);
         CycInfoContent result = cycInfoContentService.findById(bean);
         System.out.println(result.getContent());
+    }
+
+    @Test
+    public void savePicture() {
+        CycInfoPicture picture = new CycInfoPicture();
+        picture.setInfoId(5);
+        picture.setUrl("feaddddddddfdfeae.jpg");
+        cycInfoPictureDao.save(picture);
     }
 }

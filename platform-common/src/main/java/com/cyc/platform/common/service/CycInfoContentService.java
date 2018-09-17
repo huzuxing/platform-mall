@@ -16,7 +16,7 @@ public interface CycInfoContentService {
 
 	List<CycInfoContent> findPage(CycInfoContent bean, Integer page, Integer row);
 
-	CycInfoContent add(CycInfoContent bean, CycInfoContacts contact);
+	CycInfoContent add(CycInfoContent bean, CycInfoContacts contact, String[] pictures);
 
 	CycInfoContent update(CycInfoContent bean);
 

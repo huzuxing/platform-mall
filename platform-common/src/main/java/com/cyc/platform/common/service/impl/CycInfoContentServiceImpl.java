@@ -2,14 +2,20 @@ package com.cyc.platform.common.service.impl;
 
 
 import com.cyc.platform.common.dao.CycInfoContactsDao;
+import com.cyc.platform.common.dao.CycInfoPictureDao;
 import com.cyc.platform.common.entity.CycInfoContacts;
 import com.cyc.platform.common.entity.CycInfoContent;
+import com.cyc.platform.common.entity.CycInfoPicture;
+import com.cyc.platform.common.lucene.LuceneContentSvc;
 import com.cyc.platform.common.service.CycInfoContentService;
 import com.cyc.platform.common.dao.CycInfoContentDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -19,6 +25,8 @@ import java.util.List;
 
 @Service("cycInfoContentService")
 public class CycInfoContentServiceImpl implements CycInfoContentService {
+
+	private final Logger logger = LoggerFactory.getLogger(CycInfoContentServiceImpl.class);
 
 	/**
  	 * 根据条件获取list列表信息 
@@ -41,11 +49,27 @@ public class CycInfoContentServiceImpl implements CycInfoContentService {
  	**/
 	@Override
 	@Transactional
-	public CycInfoContent add(final CycInfoContent bean, CycInfoContacts contact) {
+	public CycInfoContent add(final CycInfoContent bean, CycInfoContacts contact, String[] pictures) {
 		// 先保存联系人
 		cycInfoContactsDao.save(contact);
 		bean.setContactId(contact.getId());
 		cycInfoContentDao.save(bean);
+
+		// 保存图片,这里批量保存，将来是性能瓶颈
+		if (null != pictures) {
+			for (String p : pictures) {
+				CycInfoPicture picture = new CycInfoPicture();
+				picture.setInfoId(bean.getId());
+				picture.setUrl(p);
+				cycInfoPictureDao.save(picture);
+			}
+		}
+
+		try {
+			luceneContentSvc.createIndex(bean);
+		} catch (IOException e) {
+			logger.error("", e);
+		}
 		return bean;
 	}
 	/**
@@ -103,5 +127,9 @@ public class CycInfoContentServiceImpl implements CycInfoContentService {
 	@Resource
 	private CycInfoContactsDao cycInfoContactsDao;
 
+	@Resource
+	private LuceneContentSvc luceneContentSvc;
 
+	@Resource
+	private CycInfoPictureDao cycInfoPictureDao;
 }

@@ -2,6 +2,7 @@ package com.cyc.platform.common.dao;
 
 
 import com.cyc.platform.common.entity.CycInfoPicture;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,10 @@ public interface CycInfoPictureDao {
 
 	List<CycInfoPicture> findPage(CycInfoPicture bean, Integer page, Integer row);
 
-	CycInfoPicture save(CycInfoPicture bean);
+	@Insert("insert into cyc_info_picture(info_id, url) values(#{infoId}, #{url})")
+	int save(CycInfoPicture bean);
 
-	CycInfoPicture update(CycInfoPicture bean);
+	int update(CycInfoPicture bean);
 
 	CycInfoPicture findById(CycInfoPicture bean);
 
