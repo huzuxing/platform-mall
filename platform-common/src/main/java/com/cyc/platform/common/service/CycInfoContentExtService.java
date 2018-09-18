@@ -29,4 +29,7 @@ public interface CycInfoContentExtService {
 
 	boolean batchDelete(List<CycInfoContentExt> bean);
 
+	int up(Integer infoId);
+
+	int view(Integer infoId);
 }

@@ -49,8 +49,8 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
 	@Override
 	@Transactional
 	public CycInfoContentExt update(final CycInfoContentExt bean) {
-
-		return null;
+		cycInfoContentExtDao.update(bean);
+		return bean;
 	}
 	/**
  	 * 根据ID获取数据，需要参数校验 
@@ -58,7 +58,7 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
 	@Override
 	public CycInfoContentExt findById(final CycInfoContentExt bean) {
 
-		return null;
+		return cycInfoContentExtDao.findById(bean);
 	}
 	/**
  	 * 根据条件删除数据 
@@ -92,6 +92,33 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
 
 		return false;
 	}
+
+	/**
+	 * 点赞
+	 * @param infoId
+	 * @return
+     */
+	@Override
+	public int up(Integer infoId) {
+		CycInfoContentExt bean = new CycInfoContentExt();
+		bean.setInfoId(infoId);
+		CycInfoContentExt entity = cycInfoContentExtDao.findById(bean);
+		if (null == entity) {
+
+		}
+		return 0;
+	}
+
+	/**
+	 * 查看
+	 * @param infoId
+	 * @return
+     */
+	@Override
+	public int view(Integer infoId) {
+		return 0;
+	}
+
 	@Resource
 	private CycInfoContentExtDao cycInfoContentExtDao;
 

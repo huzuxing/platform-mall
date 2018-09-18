@@ -114,6 +114,24 @@ public class CycInfoContentController {
 		};
 		return new WebAsyncTask<String>(Constant.REQUEST_TIMEOUT_MILLISECOND, callable);
 	}
+
+	/**
+	 * 点赞，这里为了快速开发，直接入库，以后将是瓶颈，频繁更新的，应该先入缓存，定时入库
+	 **/
+	@RequestMapping(value = "/up", method = RequestMethod.POST)
+	public WebAsyncTask<String> up(final Integer id) {
+		Callable callable = () -> {
+			RetEntity retEntity = null;
+			if (null == id) {
+				retEntity = new RetEntity(Tips.ERROR202.getCode(), Tips.ERROR202.getDesc());
+				return GsonUtils.toGsonExcludeFields(retEntity);
+			}
+			
+			return null;
+		};
+		return new WebAsyncTask<String>(Constant.REQUEST_TIMEOUT_MILLISECOND, callable);
+	}
+
 	@Resource
 	private CycInfoContentService cycInfoContentService;
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50631
 File Encoding         : 65001
 
-Date: 2018-09-16 22:11:00
+Date: 2018-09-18 23:38:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -244,12 +244,14 @@ CREATE TABLE `cyc_info_content_ext` (
   `praise_count` int(11) DEFAULT '0' COMMENT '点赞次数',
   `forward_count` int(11) DEFAULT '0' COMMENT '转发次数',
   `collect_count` int(11) DEFAULT '0' COMMENT '收藏次数',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息扩展表';
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `info_id` (`info_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='信息扩展表';
 
 -- ----------------------------
 -- Records of cyc_info_content_ext
 -- ----------------------------
+INSERT INTO `cyc_info_content_ext` VALUES ('1', '5', '2', '2', null, null);
 
 -- ----------------------------
 -- Table structure for `cyc_info_picture`
