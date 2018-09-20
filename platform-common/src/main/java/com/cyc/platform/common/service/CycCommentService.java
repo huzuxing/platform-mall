@@ -29,4 +29,6 @@ public interface CycCommentService {
 
 	boolean batchDelete(List<CycComment> bean);
 
+	CycComment reply(CycComment bean, Integer pTopicId);
+
 }

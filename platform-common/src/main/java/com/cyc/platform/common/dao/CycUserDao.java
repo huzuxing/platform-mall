@@ -17,9 +17,9 @@ public interface CycUserDao {
 
 	List<CycUser> findPage(CycUser bean, Integer page, Integer row);
 
-	CycUser save(CycUser bean);
+	int save(CycUser bean);
 
-	CycUser update(CycUser bean);
+	int update(CycUser bean);
 
 	CycUser findById(CycUser bean);
 

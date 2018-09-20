@@ -33,4 +33,10 @@ public class CycInfoContentExtTest {
         ext.setPraiseCount(2);
         cycInfoContentExtService.update(ext);
     }
+
+    @Test
+    public void up() {
+        int count = cycInfoContentExtService.up(6);
+        System.out.println(count);
+    }
 }

@@ -2,6 +2,8 @@ package com.cyc.platform.common.dao;
 
 
 import com.cyc.platform.common.entity.CycCommentParentchildren;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,9 +19,10 @@ public interface CycCommentParentchildrenDao {
 
 	List<CycCommentParentchildren> findPage(CycCommentParentchildren bean, Integer page, Integer row);
 
-	CycCommentParentchildren save(CycCommentParentchildren bean);
+	@Insert("insert into cyc_comment_parentchildren(parent_id, child_id) values(#{parentId}, #{childId})")
+	int save(CycCommentParentchildren bean);
 
-	CycCommentParentchildren update(CycCommentParentchildren bean);
+	int update(CycCommentParentchildren bean);
 
 	CycCommentParentchildren findById(CycCommentParentchildren bean);
 

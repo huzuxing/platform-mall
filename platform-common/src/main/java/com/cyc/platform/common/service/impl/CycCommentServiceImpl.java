@@ -1,7 +1,9 @@
 package com.cyc.platform.common.service.impl;
 
 
+import com.cyc.platform.common.dao.CycCommentParentchildrenDao;
 import com.cyc.platform.common.entity.CycComment;
+import com.cyc.platform.common.entity.CycCommentParentchildren;
 import com.cyc.platform.common.service.CycCommentService;
 import com.cyc.platform.common.dao.CycCommentDao;
 import org.springframework.stereotype.Service;
@@ -40,8 +42,8 @@ public class CycCommentServiceImpl implements CycCommentService {
 	@Override
 	@Transactional
 	public CycComment add(final CycComment bean) {
-
-		return null;
+		cycCommentDao.save(bean);
+		return bean;
 	}
 	/**
  	 * 更新数据 
@@ -92,7 +94,21 @@ public class CycCommentServiceImpl implements CycCommentService {
 
 		return false;
 	}
+
+	@Override
+	public CycComment reply(CycComment bean, Integer pTopicId) {
+		cycCommentDao.save(bean);
+		CycCommentParentchildren cycCommentParentchildren = new CycCommentParentchildren();
+		cycCommentParentchildren.setParentId(pTopicId);
+		cycCommentParentchildren.setChildId(bean.getId());
+		cycCommentParentchildrenDao.save(cycCommentParentchildren);
+		return bean;
+	}
+
 	@Resource
 	private CycCommentDao cycCommentDao;
+
+	@Resource
+	private CycCommentParentchildrenDao cycCommentParentchildrenDao;
 
 }

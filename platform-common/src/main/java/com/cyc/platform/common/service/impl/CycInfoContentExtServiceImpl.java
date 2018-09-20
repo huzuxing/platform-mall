@@ -103,10 +103,17 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
 		CycInfoContentExt bean = new CycInfoContentExt();
 		bean.setInfoId(infoId);
 		CycInfoContentExt entity = cycInfoContentExtDao.findById(bean);
+		int count = 0;
 		if (null == entity) {
-
+			count = 1;
+			bean.setPraiseCount(count);
+			cycInfoContentExtDao.save(bean);
+			return count;
 		}
-		return 0;
+		count = entity.getPraiseCount() + 1;
+		bean.setPraiseCount(count);
+		cycInfoContentExtDao.update(bean);
+		return count;
 	}
 
 	/**
@@ -116,7 +123,20 @@ public class CycInfoContentExtServiceImpl implements CycInfoContentExtService {
      */
 	@Override
 	public int view(Integer infoId) {
-		return 0;
+		CycInfoContentExt bean = new CycInfoContentExt();
+		bean.setInfoId(infoId);
+		CycInfoContentExt entity = cycInfoContentExtDao.findById(bean);
+		int count = 0;
+		if (null == entity) {
+			count = 1;
+			bean.setViewCount(count);
+			cycInfoContentExtDao.save(bean);
+			return count;
+		}
+		count = entity.getViewCount() + 1;
+		bean.setViewCount(count);
+		cycInfoContentExtDao.update(bean);
+		return count;
 	}
 
 	@Resource
